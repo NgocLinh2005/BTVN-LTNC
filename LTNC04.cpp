@@ -405,5 +405,56 @@ vector<string> split(const string &str) {
     return tokens;
 }
 */
-//Cau 7/////
+//Cau 7/////Falling Rocks///
+/*
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
 
+bool check(unsigned int r, unsigned int c, vector<vector<char>>& mat)
+{
+    if (r==mat.size()-1) return true;
+    mat[r][c]='Y';
+    //straight
+    if (mat[r+1][c]=='E'){
+        if (check(r+1, c, mat)) return true;
+    }
+    //Left
+    if (mat[r][c-1]=='E' && mat[r+1][c-1]=='E'){
+        if (check(r+1, c-1, mat)) return true;
+    }
+    //Right
+    if (mat[r][c+1]=='E' && mat[r+1][c+1]=='E'){
+        if (check(r+1, c+1, mat)) return true;
+    }
+    return false;
+
+}
+int main() {
+    unsigned int W, H;
+    cin >> W >> H;
+    vector <vector<char>> v(H);
+    for (unsigned int i=0; i<H; i++)
+    {
+        vector<char> row(W+2);
+        row[0]='R'; row[W+1]='R';
+        for (unsigned int j=1; j<=W; j++)
+        {
+            cin >> row[j];
+
+        }
+        v[i]=row;
+    }
+    unsigned int y(0);
+    while (v[0][y]!='Y'){
+        y++;
+    }
+    if (check(0, y, v)) cout << "YES";
+    else cout << "NO";
+
+    return 0;
+}
+*/
