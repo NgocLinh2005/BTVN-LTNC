@@ -80,7 +80,7 @@ int main() {
 */
 
 //Cau 4/////
-
+/*
 #include <cmath>
 #include <cstdio>
 #include <vector>
@@ -114,3 +114,122 @@ int main() {
    }
     return 0;
 }
+*/
+//Cau 5///
+/*
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int n;
+    cin >> n;
+    set<int> s;
+
+    for (int i=0; i<n; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        switch (x)
+        { case 1:
+          {
+              s.insert(y);
+              break;
+          }
+          case 2:
+          {
+              s.erase(y);
+              break;
+          }
+          case 3:
+          {
+              auto itr=s.find(y);
+              if (*itr != *s.end())
+              {
+                  cout << "Yes" << endl;
+              }
+              else
+              {
+                  cout << "No" << endl;
+              }
+
+              break;
+
+          }
+
+        }
+    }
+
+    return 0;
+}
+
+
+
+*/
+//Cau 6////
+/*
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <set>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int n;
+    cin >> n;
+    map <string, int> m;
+    for (int i=0; i<n; i++)
+    {
+        int x;
+        string name;
+        int mark;
+        cin >> x >> name;
+        switch (x)
+        {
+            case 1:
+            {   cin >> mark;
+                auto itr = m.find(name);
+                if (itr != m.end())
+            {
+                itr -> second += mark;
+                break;
+            }
+                else
+                {
+                    m.insert(make_pair(name, mark));
+                    break;
+                }
+            }
+            case 2:
+            {
+                m.erase(name);
+                break;
+            }
+            case 3:
+            {
+                auto itr = m.find(name);
+                if (itr != m.end())
+                    cout << itr->second << "\n";
+                else
+                    cout << "0\n";
+                break;
+            }
+
+        }
+    }
+
+    return 0;
+}
+
+
+
+*/
