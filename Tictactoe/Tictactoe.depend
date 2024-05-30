@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1713257640 source:c:\users\dell\documents\c++\c++codeblocks\mainodau\tictactoe\main.cpp
+	<iostream>
+	"graphics.h"
+	"logic.h"
+
+1713251021 c:\users\dell\documents\c++\c++codeblocks\mainodau\tictactoe\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"logic.h"
+	"def.h"
+
+1715852435 c:\users\dell\documents\c++\c++codeblocks\mainodau\tictactoe\logic.h
+	<iostream>
+	"graphics.h"
+	"def.h"
+
+1715852368 c:\users\dell\documents\c++\c++codeblocks\mainodau\tictactoe\def.h
+
+1717054091 source:d:\tictactoe\main.cpp
+	<iostream>
+	"graphics.h"
+	"logic.h"
+
+1717054028 d:\tictactoe\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"logic.h"
+	"def.h"
+
+1717053976 d:\tictactoe\logic.h
+	<iostream>
+	"graphics.h"
+	"def.h"
+
+1717004258 d:\tictactoe\def.h
+
