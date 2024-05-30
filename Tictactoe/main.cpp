@@ -33,6 +33,7 @@ int handleOptionsMenu(SDL_Event &event, Graphics &graphics) {
 
 int main(int argc, char *argv[])
 {
+
     Graphics graphics;
     graphics.init();
 
@@ -103,6 +104,7 @@ int main(int argc, char *argv[])
                         case SDL_MOUSEBUTTONDOWN:
                             SDL_GetMouseState(&x, &y);
                             cerr << "Mouse-down at (" << x << ", " << y << ")\n";
+                            if (x >= 850 && x <= 950 && y >= 340  && y < 440) {play = true; quit = true;}
                             int clickedCol = (x - startX) / CELL_SIZE;
                             int clickedRow = (y - startY) / CELL_SIZE;
                             if (clickedCol >= 0 && clickedCol < BOARD_SIZE && clickedRow >= 0 && clickedRow < BOARD_SIZE) {
@@ -119,6 +121,7 @@ int main(int argc, char *argv[])
                                     state = menu;
                                 }
                             }
+
                             break;
                     }
                     break;

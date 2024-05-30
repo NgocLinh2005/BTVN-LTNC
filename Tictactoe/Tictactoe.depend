@@ -35,3 +35,22 @@
 
 1717004258 d:\tictactoe\def.h
 
+1717084223 source:d:\github\btvn_ltnc\btvn-ltnc\tictactoe\main.cpp
+	<iostream>
+	"graphics.h"
+	"logic.h"
+
+1717084481 d:\github\btvn_ltnc\btvn-ltnc\tictactoe\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"logic.h"
+	"def.h"
+	<SDL_mixer.h>
+
+1717053976 d:\github\btvn_ltnc\btvn-ltnc\tictactoe\logic.h
+	<iostream>
+	"graphics.h"
+	"def.h"
+
+1717004258 d:\github\btvn_ltnc\btvn-ltnc\tictactoe\def.h
+

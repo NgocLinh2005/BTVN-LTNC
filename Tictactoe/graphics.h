@@ -6,14 +6,14 @@
 #include <SDL_image.h>
 #include "logic.h"
 #include "def.h"
+#include <SDL_mixer.h>
 
 struct Graphics {
     SDL_Renderer *renderer;
     SDL_Window *window;
     SDL_Texture *cellEmpty, *cellX, *cellO, *doraemon, *doraemonX, *doraemonO;
-    SDL_Texture *startbutton, *exitbutton, *optionbutton, *threeCrossButton, *fourCrossButton, *fiveCrossButton;
-
-
+    SDL_Texture *startbutton, *exitbutton, *optionbutton, *threeCrossButton, *fourCrossButton, *fiveCrossButton, *exitbutton2;
+    Mix_Music *backgroundMusic;
     void logErrorAndExit(const char* msg, const char* error)
     {
         SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,
@@ -26,6 +26,8 @@ struct Graphics {
 
         if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
             logErrorAndExit("SDL_Init", SDL_GetError());
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == -1)
+            logErrorAndExit("Mix_OpenAudio", Mix_GetError());
 
         window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED,
                    SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT,
@@ -53,18 +55,20 @@ struct Graphics {
         cellO = loadTexture("cell_o.png");
         startbutton = loadTexture("Start Button.png");
         exitbutton = loadTexture("Exit Button.png");
+        exitbutton2 = loadTexture("X Square Button.png");
         optionbutton = loadTexture("Options Button.png");
         threeCrossButton = loadTexture("3_light.png");
         fourCrossButton = loadTexture("4_light.png");
         fiveCrossButton = loadTexture("5_light.png");
+        backgroundMusic = Mix_LoadMUS("background_music.mp3");
+        if (backgroundMusic == nullptr)
+            logErrorAndExit("LoadMUS", Mix_GetError());
+
+        Mix_PlayMusic(backgroundMusic, -1);
+        Mix_VolumeMusic(25);
 
     }
 
-    void prepareScene(SDL_Texture * background)
-    {
-        SDL_RenderClear(renderer);
-        SDL_RenderCopy( renderer, background, NULL, NULL);
-    }
 
     void presentScene()
     {
@@ -89,13 +93,14 @@ struct Graphics {
 
         dest.x = x;
         dest.y = y;
-        dest.w=w;
-        dest.h=h;
+        dest.w =w;
+        dest.h =h;
 
         SDL_RenderCopy(renderer, texture, NULL, &dest);
     }
-    void render(const Tictactoe& game) {
 
+    void render(const Tictactoe& game) {
+        renderTexture (exitbutton2, 850, 340, 100, 100);
         for (int i = 0; i < BOARD_SIZE; i++)
             for (int j = 0; j < BOARD_SIZE; j++) {
                 int x = startX + j* CELL_SIZE;
@@ -105,6 +110,7 @@ struct Graphics {
                     case X_CELL: renderTexture(cellX, x, y,size_ox,size_ox); break;
                     case O_CELL: renderTexture(cellO, x, y,size_ox,size_ox); break;
                 };
+
             };
 
 
@@ -165,9 +171,9 @@ struct Graphics {
         cellX = nullptr;
         SDL_DestroyTexture(cellO);
         cellO = nullptr;
-
+        Mix_FreeMusic(backgroundMusic);
         IMG_Quit();
-
+        Mix_Quit();
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         SDL_Quit();
